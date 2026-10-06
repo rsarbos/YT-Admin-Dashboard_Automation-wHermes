@@ -1,0 +1,83 @@
+{
+  "$schema": "https://modelcontextprotocol.io/schema/server-manifest.json",
+  "name": "omnitube-hermes-mcp",
+  "version": "1.0.0",
+  "description": "Model Context Protocol server for OmniTube AI Studio short-form YouTube video generation & automation suite",
+  "endpoint": "http://localhost:3000/api/mcp",
+  "transport": "http-jsonrpc-2.0",
+  "tools": [
+    {
+      "name": "generate_short_script",
+      "description": "Generates a complete high-retention short-form video script with scene breakdowns, kinetic captions, B-roll prompts, and SFX cues.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "topic": { "type": "string", "description": "Core idea or hook topic" },
+          "channelNiche": { "type": "string", "description": "Channel niche" },
+          "tone": { "type": "string", "description": "Pacing tone (High-Energy & Viral, Curiosity Gap, etc.)" },
+          "durationSeconds": { "type": "number", "description": "Target duration (default: 58)" }
+        },
+        "required": ["topic"]
+      }
+    },
+    {
+      "name": "analyze_keyword_trends",
+      "description": "Analyzes breakout keywords, search velocity percentages, and viral hook templates.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "niche": { "type": "string", "description": "Target niche to analyze" }
+        },
+        "required": ["niche"]
+      }
+    },
+    {
+      "name": "benchmark_competitors",
+      "description": "Reverse-engineers top industry creators to extract their retention curves and signature hook formulas.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "niche": { "type": "string", "description": "Niche of creators to benchmark" }
+        },
+        "required": ["niche"]
+      }
+    },
+    {
+      "name": "update_voice_instructions",
+      "description": "Calibrates custom AI delivery instructions for the user's cloned voice.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "customInstructions": { "type": "string", "description": "Vocal delivery prompt instructions" },
+          "cadenceMultiplier": { "type": "number", "description": "Speech speed cadence" }
+        },
+        "required": ["customInstructions"]
+      }
+    },
+    {
+      "name": "render_export_video",
+      "description": "Dispatches a hardware video render job via cloud GPU or local canvas.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "projectId": { "type": "string", "description": "Project ID" },
+          "resolution": { "type": "string", "description": "1080x1920 or 720x1280" }
+        },
+        "required": ["projectId"]
+      }
+    },
+    {
+      "name": "schedule_crosspost",
+      "description": "Schedules multi-platform distribution across YouTube Shorts, TikTok, and Instagram Reels.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "projectId": { "type": "string", "description": "Project ID" },
+          "platforms": { "type": "array", "items": { "type": "string" }, "description": "Platforms list" },
+          "scheduledTime": { "type": "string", "description": "Target scheduled publish time" }
+        },
+        "required": ["projectId", "platforms"]
+      }
+    }
+  ]
+}

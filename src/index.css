@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color-scheme: dark;
+    background-color: #090a0f;
+    color: #f3f4f6;
+  }
+
+  code, pre, .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+/* Custom sleek scrollbars for timeline and asset shelves */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.4);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(75, 85, 99, 0.5);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(156, 163, 175, 0.8);
+}
+
+/* Custom glow utility animations */
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.65; }
+}
+
+@keyframes waveform-bounce {
+  0%, 100% { transform: scaleY(0.3); }
+  50% { transform: scaleY(1); }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Short-form caption styling presets */
+.caption-hormozi {
+  text-shadow: 0 4px 12px rgba(0,0,0,0.9), 0 0 20px rgba(250, 204, 21, 0.4);
+  font-family: 'Montserrat', 'Cabinet Grotesk', sans-serif;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
+.caption-neon {
+  text-shadow: 0 0 10px #38bdf8, 0 0 20px #38bdf8, 0 0 40px #0284c7;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 800;
+}
+
+.caption-cinema {
+  text-shadow: 0 2px 8px rgba(0,0,0,0.85);
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 800;
+}

@@ -1,0 +1,6 @@
+{
+  "name": "OmniTube AI Studio - Multi-Channel YouTube & Short-Form Automation Suite",
+  "description": "Enterprise-grade multi-channel YouTube manager and short-form video studio powered by AI. Features drag-and-drop timeline editor, voice cloning, realistic lip-synced avatar studio, viral keyword radar, competitor hook benchmarking, multi-platform cross-posting, and cloud GPU cluster render acceleration.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
