@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavigationTab } from '../../types';
 import {
+  Bot,
   Film,
   Youtube,
   TrendingUp,
@@ -22,6 +23,14 @@ interface SidebarProps {
 
 export const Sidebar: React.FC<SidebarProps> = ({ activeTab, onSelectTab }) => {
   const navItems = [
+    {
+      id: 'autonomous-agent',
+      label: 'YouTube Studio AI Agent',
+      sub: 'Multi-Channel Auto-Pilot',
+      icon: Bot,
+      color: 'text-amber-400',
+      badge: 'AUTO',
+    },
     {
       id: 'editor',
       label: 'AI Video Editor',
@@ -108,8 +117,15 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, onSelectTab }) => {
                 <IconComponent className={`w-4 h-4 ${isActive ? item.color : 'text-neutral-400'}`} />
               </div>
 
-              <div className="min-w-0">
-                <span className="text-xs block leading-tight truncate">{item.label}</span>
+              <div className="min-w-0 flex-1">
+                <div className="flex items-center justify-between gap-1">
+                  <span className="text-xs block leading-tight truncate">{item.label}</span>
+                  {item.badge && (
+                    <span className="px-1.5 py-0.2 rounded text-[9px] font-mono font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40">
+                      {item.badge}
+                    </span>
+                  )}
+                </div>
                 <span className="text-[10px] text-neutral-500 block leading-tight font-normal truncate">
                   {item.sub}
                 </span>

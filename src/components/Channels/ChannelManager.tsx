@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Channel } from '../../types';
 import { SUGGESTED_CHANNEL_TEMPLATES } from '../../data/mockData';
-import { Youtube, Plus, ExternalLink, CheckCircle2, Sliders, Palette, ArrowRight, Sparkles, Check } from 'lucide-react';
+import { Youtube, Plus, ExternalLink, CheckCircle2, Sliders, Palette, ArrowRight, Sparkles, Check, Bot } from 'lucide-react';
 
 interface ChannelManagerProps {
   channels: Channel[];
@@ -10,6 +10,7 @@ interface ChannelManagerProps {
   onAddChannel: (channel: Channel) => void;
   onUpdateChannel: (channel: Channel) => void;
   onProceedToNextStep?: () => void;
+  onOpenAutonomousAgent?: () => void;
 }
 
 export const ChannelManager: React.FC<ChannelManagerProps> = ({
@@ -19,6 +20,7 @@ export const ChannelManager: React.FC<ChannelManagerProps> = ({
   onAddChannel,
   onUpdateChannel,
   onProceedToNextStep,
+  onOpenAutonomousAgent,
 }) => {
   const [showAddModal, setShowAddModal] = useState(false);
   const [newChannelName, setNewChannelName] = useState('');
@@ -99,6 +101,16 @@ export const ChannelManager: React.FC<ChannelManagerProps> = ({
         </div>
 
         <div className="flex items-center gap-2.5">
+          {onOpenAutonomousAgent && (
+            <button
+              onClick={onOpenAutonomousAgent}
+              className="flex items-center gap-1.5 px-3.5 py-2 bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 rounded-xl text-xs font-bold border border-amber-500/40 transition-colors shadow-md shadow-amber-950/20"
+            >
+              <Bot className="w-4 h-4 text-amber-400" />
+              <span>Ejecutar Agente Autónomo</span>
+            </button>
+          )}
+
           <button
             onClick={() => setShowAddModal(true)}
             className="flex items-center gap-1.5 px-3 py-2 bg-neutral-800 hover:bg-neutral-700 text-white rounded-xl text-xs font-semibold border border-white/10 transition-colors"

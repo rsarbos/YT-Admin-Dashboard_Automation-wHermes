@@ -2,6 +2,7 @@ export type AspectRatio = '9:16' | '16:9';
 export type GuidedStep = 1 | 2 | 3 | 4 | 5;
 
 export type NavigationTab =
+  | 'autonomous-agent'
   | 'editor'
   | 'channels'
   | 'keywords'
@@ -17,6 +18,7 @@ export interface Channel {
   handle: string;
   avatarUrl: string;
   niche: string;
+  targetAudience?: string;
   primaryColor: string;
   brandFont: string;
   defaultAvatarId: string;
@@ -176,4 +178,76 @@ export interface ScheduledPost {
   scheduledTime: string;
   status: 'scheduled' | 'posting' | 'completed' | 'draft';
   targetHook: string;
+}
+
+export interface CompetitorVideoPattern {
+  title: string;
+  views: string;
+  hookType: string;
+  format: string;
+  durationSeconds: number;
+  retentionTrigger: string;
+}
+
+export interface CompetitorAuditDetail {
+  name: string;
+  handle: string;
+  subscribers: string;
+  avgViews: string;
+  keyDifferentiator: string;
+  thumbnailWeakness: string;
+}
+
+export interface AutonomousCycleReport {
+  id: string;
+  channelId: string;
+  channelName: string;
+  channelHandle: string;
+  timestamp: string;
+  status: 'idle' | 'running' | 'completed' | 'error';
+  currentStage: 1 | 2 | 3 | 4 | 5;
+  stage1NicheResearch: {
+    detectedNiche: string;
+    targetAudience: string;
+    corePillars: string[];
+    top3Competitors: CompetitorAuditDetail[];
+    top10VideosPatterns: CompetitorVideoPattern[];
+    winningHookSummary: string;
+    optimalDurationSeconds: number;
+  };
+  stage2ContentScript: {
+    title: string;
+    viralHook3s: string;
+    retentionStrategy: string;
+    callToAction: string;
+    scenesCount: number;
+    estimatedDuration: number;
+    scenes: TimelineScene[];
+  };
+  stage3ThumbnailEngineering: {
+    competitorWeaknessesDetected: string[];
+    ctrSuperpowerPrompt: string;
+    predictedCtrGain: string;
+    previewImageUrl: string;
+    overlayHeadline: string;
+    colorScheme: string[];
+    contrastRatio: string;
+  };
+  stage4ViralMetadata: {
+    seoTitle: string;
+    seoDescription: string;
+    topKeywords: string[];
+    hashtags: string[];
+    tags: string[];
+    algorithmSearchScore: number;
+  };
+  stage5PublishSchedule: {
+    peakOrganicWindow: string;
+    currentTimeFormatted: string;
+    coincidesWithPeak: boolean;
+    publicationStatus: 'PUBLICADO_DE_INMEDIATO' | 'PROGRAMADO_HORARIO_PICO';
+    scheduledTimeFormatted: string;
+    actionLog: string;
+  };
+  executiveSummaryLog: string;
 }

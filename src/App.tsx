@@ -37,10 +37,11 @@ import { CrossPostHub } from './components/Distribution/CrossPostHub';
 import { CloudGPUCluster } from './components/CloudGPU/CloudGPUCluster';
 import { NewProjectModal } from './components/Modals/NewProjectModal';
 import { HermesChatFloating } from './components/Hermes/HermesChatFloating';
+import { YouTubeStudioAgent } from './components/AutonomousAgent/YouTubeStudioAgent';
 
 export default function App() {
   // Navigation & Guided Stepper states
-  const [activeTab, setActiveTab] = useState<NavigationTab>('editor');
+  const [activeTab, setActiveTab] = useState<NavigationTab>('autonomous-agent');
   const [currentStep, setCurrentStep] = useState<GuidedStep>(1);
   const [isGuidedMode, setIsGuidedMode] = useState<boolean>(true);
   const [avatarStudioTab, setAvatarStudioTab] = useState<'avatar' | 'voice'>('avatar');
@@ -271,6 +272,7 @@ export default function App() {
         onSelectChannel={(id) => setActiveChannelId(id)}
         onOpenNewModal={() => setIsNewModalOpen(true)}
         onTriggerExport={() => setActiveTab('cloudgpu')}
+        onOpenAutonomousAgent={() => setActiveTab('autonomous-agent')}
       />
 
       {/* Guided Step-by-Step Workflow Progress Bar */}
@@ -292,7 +294,24 @@ export default function App() {
         <Sidebar activeTab={activeTab} onSelectTab={(t) => setActiveTab(t)} />
 
         {/* Central Workspace Area */}
-        <main className="flex-1 overflow-y-auto p-5 bg-[#090a0f]">
+        <main className="flex-1 overflow-y-auto p-5 bg-[#090a0f] flex flex-col">
+          {/* TAB 0: AUTONOMOUS YOUTUBE STUDIO AI AGENT */}
+          {activeTab === 'autonomous-agent' && (
+            <YouTubeStudioAgent
+              channels={channels}
+              activeChannel={activeChannel}
+              onSelectChannel={(chanId) => setActiveChannelId(chanId)}
+              onLoadProjectToEditor={(newProj) => {
+                setProject(newProj);
+                setActiveSceneId(newProj.scenes[0].id);
+                setCurrentTime(0);
+                setActiveTab('editor');
+              }}
+              onOpenThumbnailStudio={() => setActiveTab('thumbnails')}
+              onOpenCompetitors={() => setActiveTab('competitors')}
+            />
+          )}
+
           {/* TAB 1: INTEGRATED AI VIDEO EDITOR (Step 5) */}
           {activeTab === 'editor' && (
             <div className="flex flex-col gap-5 h-full min-h-[750px]">
@@ -369,6 +388,7 @@ export default function App() {
                 setChannels(channels.map((c) => (c.id === updated.id ? updated : c)))
               }
               onProceedToNextStep={() => handleSelectStep(2)}
+              onOpenAutonomousAgent={() => setActiveTab('autonomous-agent')}
             />
           )}
 

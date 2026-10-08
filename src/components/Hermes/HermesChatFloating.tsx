@@ -16,6 +16,7 @@ import {
   VolumeX,
   Check,
   ChevronDown,
+  Target,
 } from 'lucide-react';
 
 interface HermesChatFloatingProps {
@@ -274,6 +275,20 @@ export const HermesChatFloating: React.FC<HermesChatFloatingProps> = ({
               {/* Quick Delegation Task Pills */}
               <div className="px-3 py-2 bg-neutral-950/80 border-t border-white/5 flex gap-1.5 overflow-x-auto text-[11px]">
                 <button
+                  onClick={() => handleQuickDelegate('Hermes, ejecuta el ciclo completo del Agente Autónomo para el canal Emprendenmx')}
+                  className="px-2.5 py-1 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 shrink-0 flex items-center gap-1 font-semibold"
+                >
+                  <Bot className="w-3 h-3 text-amber-400" />
+                  <span>Pipeline Emprendenmx</span>
+                </button>
+                <button
+                  onClick={() => handleQuickDelegate('Hermes, audita a los top 3 competidores y extrae los hooks de sus 10 videos más vistos')}
+                  className="px-2.5 py-1 rounded-lg bg-neutral-800 hover:bg-neutral-700 text-neutral-200 border border-white/10 shrink-0 flex items-center gap-1"
+                >
+                  <Target className="w-3 h-3 text-rose-400" />
+                  <span>Top 3 Competidores</span>
+                </button>
+                <button
                   onClick={() => handleQuickDelegate('Hermes, draft a 10x viral retention hook for this short')}
                   className="px-2.5 py-1 rounded-lg bg-neutral-800 hover:bg-neutral-700 text-neutral-200 border border-white/10 shrink-0 flex items-center gap-1"
                 >
@@ -286,13 +301,6 @@ export const HermesChatFloating: React.FC<HermesChatFloatingProps> = ({
                 >
                   <Mic className="w-3 h-3 text-emerald-400" />
                   <span>Tune Voice</span>
-                </button>
-                <button
-                  onClick={() => handleQuickDelegate('Hermes, export the current video project now')}
-                  className="px-2.5 py-1 rounded-lg bg-neutral-800 hover:bg-neutral-700 text-neutral-200 border border-white/10 shrink-0 flex items-center gap-1"
-                >
-                  <Download className="w-3 h-3 text-cyan-400" />
-                  <span>Export Video</span>
                 </button>
               </div>
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Channel, VideoProject } from '../../types';
-import { Youtube, Plus, Zap, Download, ChevronDown, Check, Play, Film } from 'lucide-react';
+import { Youtube, Plus, Zap, Download, ChevronDown, Check, Play, Film, Bot } from 'lucide-react';
 
 interface HeaderProps {
   channels: Channel[];
@@ -9,6 +9,7 @@ interface HeaderProps {
   onSelectChannel: (channelId: string) => void;
   onOpenNewModal: () => void;
   onTriggerExport: () => void;
+  onOpenAutonomousAgent?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -18,6 +19,7 @@ export const Header: React.FC<HeaderProps> = ({
   onSelectChannel,
   onOpenNewModal,
   onTriggerExport,
+  onOpenAutonomousAgent,
 }) => {
   const [channelDropdownOpen, setChannelDropdownOpen] = React.useState(false);
 
@@ -108,6 +110,17 @@ export const Header: React.FC<HeaderProps> = ({
 
       {/* Right Controls */}
       <div className="flex items-center gap-3">
+        {/* Autonomous Agent Button */}
+        {onOpenAutonomousAgent && (
+          <button
+            onClick={onOpenAutonomousAgent}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 text-amber-300 border border-amber-500/40 text-xs font-bold transition-all shadow-md shadow-amber-950/20"
+          >
+            <Bot className="w-3.5 h-3.5 text-amber-400" />
+            <span className="hidden sm:inline">Agente Autónomo</span>
+          </button>
+        )}
+
         {/* Cloud GPU telemetry status badge */}
         <div className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-neutral-900 border border-emerald-500/20 text-emerald-400 font-mono text-[11px]">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />

@@ -55,7 +55,20 @@ If your Hermes agent runs as a Node.js CLI process with stdio bridge, you can us
 
 ## 3. Available MCP Tools for Hermes
 
-Your Hermes Agent has direct access to the following 7 core production tools:
+Your Hermes Agent has direct access to the following 8 core production tools:
+
+### `run_autonomous_youtube_pipeline`
+Executes the complete 5-stage Autonomous YouTube Studio AI Agent pipeline for any channel (such as `"Emprendenmx"`):
+1. **Detección y Research de Nicho**: Detects precise niche, target audience, audits Top 3 competitors and extracts winning hooks from their 10 most viewed videos.
+2. **Generación de Contenido**: Creates viral script with 0-3s hook, retention pacing, CTA loop, and 5 detailed production scenes.
+3. **Ingeniería de Thumbnails**: Analyzes competitor thumbnail weaknesses and designs a high-CTR premium thumbnail overcoming them.
+4. **Metadata SEO Algorítmica**: High-impact title, keywords, tags, and description with timestamps.
+5. **Publicación y Programación Inteligente**: Compares current time against niche peak organic traffic hours (18:00 - 21:00 CST) to publish immediately or schedule as a fully ready draft.
+- **Parameters**:
+  - `channelName` *(string, required)*: E.g., `"Emprendenmx"` or `"My Creator Studio"`.
+  - `channelHandle` *(string, optional)*: E.g., `"@Emprendenmx"`.
+  - `channelNiche` *(string, optional)*: E.g., `"Emprendimiento, Negocios y Finanzas en México"`.
+  - `targetTopic` *(string, optional)*: Optional specific topic to produce.
 
 ### `generate_short_script`
 Generates a complete high-retention short-form video script with scene breakdowns, B-roll visual generation prompts, on-screen kinetic captions, SFX cues, and camera zooms.
